@@ -354,7 +354,7 @@ wheels = [
 
 [[package]]
 name = "mkdocs-likec4"
-version = "1.0.0rc0"
+version = "1.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "mkdocs" },
