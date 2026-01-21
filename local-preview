@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eou pipefail
+
+IMAGE_NAME="mkdocs-likec4"
+docker build -t $IMAGE_NAME .
+docker run --rm \
+  -p 8000:8000 \
+  -v "$(pwd):/docs" \
+  "$IMAGE_NAME"

@@ -1,0 +1,27 @@
+site_name: LikeC4 for MkDocs
+repo_url: https://gitlab.doubleslash.de/doubleSlash/coc-fg/tt-devops/mkdocs-likec4
+repo_name: mkdocs-likec4
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - content.action.edit
+
+plugins:
+  - search
+  - likec4
+  - doubleslash-theme
+
+markdown_extensions:
+  - pymdownx.superfences:
+  - pymdownx.details:
+  - admonition:
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - "Home": "index.md"
+  - "Sample":
+    - "Deployment Project": "deployment/index.md"
+    - "Tutorial Project": "tutorial/index.md"
