@@ -1,5 +1,6 @@
 site_name: LikeC4 for MkDocs
-repo_url: https://gitlab.doubleslash.de/doubleSlash/coc-fg/tt-devops/mkdocs-likec4
+repo_url: https://github.com/doubleSlashde/mkdocs-likec4
+site_url: https://doubleslashde.github.io/mkdocs-likec4/
 repo_name: mkdocs-likec4
 edit_uri: edit/main/docs/
 
@@ -23,5 +24,5 @@ markdown_extensions:
 nav:
   - "Home": "index.md"
   - "Sample":
-    - "Deployment Project": "deployment/index.md"
-    - "Tutorial Project": "tutorial/index.md"
+      - "Deployment Project": "deployment/index.md"
+      - "Tutorial Project": "tutorial/index.md"

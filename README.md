@@ -4,24 +4,27 @@ MkDocs plugin for embedding [LikeC4](https://likec4.dev/) architecture diagrams.
 
 ## Quick Start
 
-Add the plugin to your `mkdocs.yml`:
+1. Ensure `likec4` and `graphviz` are available on the build system.
+2. Install the `mkdocs-likec4` plugin via `pip`:
+  ```shell
+  pip install mkdocs-likec4
+  ```
+3.Add the plugin to your `mkdocs.yml`:
+  ```yaml
+  plugins:
+    - mkdocs-likec4
+  ```
+4. Start embedding views in your markdown:
 
-```yaml
-plugins:
-  - mkdocs-likec4
-```
-
-Embed views in your markdown:
-
-````markdown
-```likec4-view
-<your-view-id>
-```
-````
+  ````markdown
+  ```likec4-view
+  <your-view-id>
+  ```
+  ````
 
 ## Documentation
 
-For complete documentation, see **[Documentation](https://pages.doubleslash.de/doubleslash/coc-fg/tt-devops/mkdocs-likec4/)**
+For complete documentation with available options and examples, please read the **[Documentation](https://doubleslashde.github.io/mkdocs-likec4/)**.
 
 ## Development
 
@@ -32,7 +35,4 @@ serving on <http://127.0.0.1:8000/>.
 
 ## Releasing
 
-Trigger the manual `release` job from the [`.gitlab-ci.yml`](.gitlab-ci.yml).
-
-The package will be published to the projects PyPi registry and is available at
-<https://gitlab.doubleslash.de/api/v4/projects/2340/packages/pypi/simple>.
+Trigger the manual `release` workflow via GitHub Actions.

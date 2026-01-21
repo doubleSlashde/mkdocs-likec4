@@ -8,7 +8,7 @@
 - [`likec4`](https://likec4.dev/tooling/cli/)
 - `graphviz` dependency
 
-Check out the sample [Dockerfile](https://gitlab.doubleslash.de/doubleSlash/coc-fg/tt-devops/mkdocs-likec4/-/blob/main/Dockerfile?ref_type=heads) for how you can provide the likec4 and graphviz dependencies.
+Check out the sample [Dockerfile](https://github.com/doubleSlashde/mkdocs-likec4/blob/main/Dockerfile) for how you can provide the likec4 and graphviz dependencies.
 
 ## Configuration
 
@@ -100,8 +100,6 @@ index
 ### My diagram fonts appear larger in MkDocs than in the Likec4 editor
 
 Diagram fronts currently render at 125% due to an incompatibility between MkDocs and LikeC4.
-
-Tracked via [UCD-128](https://jira.doubleslash.de/jira/browse/UCD-128).
 
 ??? Details
 
