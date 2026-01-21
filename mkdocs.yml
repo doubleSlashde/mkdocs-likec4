@@ -16,6 +16,9 @@ plugins:
 
 markdown_extensions:
   - pymdownx.superfences:
+  - pymdownx.snippets:
+      base_path: docs
+      check_paths: true
   - pymdownx.details:
   - admonition:
   - pymdownx.tabbed:

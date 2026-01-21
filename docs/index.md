@@ -30,11 +30,7 @@ That's it! The plugin automatically:
 
 Use the `likec4-view` code block and specify the view-id in the body to embed a LikeC4 diagram:
 
-```` markdown title="LikeC4 Diagram"
-``` likec4-view
-view-id
-```
-````
+--8<-- "usage.md"
 
 This will embed the diagram from the current LikeC4 project, or the root project if this is a single
 project setup.
@@ -63,30 +59,12 @@ You may provide the following options on the opening fence line:
 If you want to embed a diagram from a specific project outside the projects scope,
 use the `project` parameter:
 
-```` markdown title="LikeC4 Diagram"
-``` likec4-view project=tutorial
-index
-```
-
----
-
-``` likec4-view project=deployment
-index
-```
-````
+--8<-- "project-usage.md"
 
 <div class="result" markdown>
-
-```likec4-view project=tutorial
-index
-```
-
-<hr>
-
 ```likec4-view project=deployment
 index
 ```
-
 </div>
 
 !!! danger

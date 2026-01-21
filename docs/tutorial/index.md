@@ -2,11 +2,7 @@
 
 This page demonstrates embedding views from the **Tutorial** LikeC4 project.
 
-```` markdown title="LikeC4 Diagram"
-``` likec4-view
-index
-```
-````
+--8<-- "usage.md"
 
 <div class="result" markdown>
 
