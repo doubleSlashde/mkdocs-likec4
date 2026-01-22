@@ -4,16 +4,18 @@
 
 ## Requirements
 
-- `mkdocs-likec4` python plugin
 - [`likec4`](https://likec4.dev/tooling/cli/)
 - `graphviz` dependency
 
 Check out the sample [Dockerfile](https://github.com/doubleSlashde/mkdocs-likec4/blob/main/Dockerfile) for how you can provide the likec4 and graphviz dependencies.
 
-## Configuration
+## Installation
 
-Add the plugin to your `mkdocs.yml`:
-
+1. Install the plugin via `pip`:
+  ```shell
+  pip install mkdocs-likec4
+  ```
+2. Add the plugin to your `mkdocs.yml`:
 ```yaml
 plugins:
   - search
@@ -22,7 +24,7 @@ plugins:
 
 That's it! The plugin automatically:
 
-- Discovers all projects by scanning for `likec4.config.json` files (other configs formats are not supported yet!)
+- Discovers all projects by scanning for `likec4.config.json` files (**other configs formats are not supported yet!**)
 - Generates separate web components for each project
 - Loads web components into the document as required
 
