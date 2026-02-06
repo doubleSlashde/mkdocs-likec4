@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mkdocs-likec4"
 description = "LikeC4 for MkDocs"
-version = "1.0.0"
+version = "1.1.0"
 authors = [{ name = "Jonas Häusler", email = "jonas.haeusler@doubleslash.de" }]
 readme = "README.md"
 requires-python = ">=3.10"
