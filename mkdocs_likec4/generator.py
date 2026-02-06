@@ -27,6 +27,8 @@ class WebComponentGenerator:
         project_dir: Optional[str],
         build_dir: str,
         site_dir: Path,
+        *,
+        use_dot: bool = True,
     ) -> None:
         """Generate web component JS file for a LikeC4 project."""
         if project_name is not None and not LikeC4Parser.is_valid_identifier(
@@ -54,6 +56,8 @@ class WebComponentGenerator:
         )
 
         cmd = ["npx", "likec4", "codegen", "webcomponent"]
+        if not use_dot:
+            cmd.append("--no-use-dot")
         if project_name is not None:
             cmd.extend(["--webcomponent-prefix", project_name.lower()])
         cmd.extend([project_path, "-o", str(dest_file)])

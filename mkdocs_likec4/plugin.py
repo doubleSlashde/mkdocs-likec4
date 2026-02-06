@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Optional
 
 import pyjson5
+from mkdocs.config import config_options
 from mkdocs.plugins import BasePlugin
 from mkdocs.utils import get_relative_url
 
@@ -14,6 +15,8 @@ log = logging.getLogger(f"mkdocs.plugins.{__name__}")
 
 class LikeC4Plugin(BasePlugin):
     """MkDocs plugin for embedding LikeC4 architecture diagrams."""
+
+    config_scheme = (("use_dot", config_options.Type(bool, default=True)),)
 
     def __init__(self):
         self.docs_dir = None
@@ -113,7 +116,11 @@ class LikeC4Plugin(BasePlugin):
         for project in all_projects:
             if project in self.project_map:
                 WebComponentGenerator.generate(
-                    project, self.project_map[project], str(self.docs_dir), site_dir
+                    project,
+                    self.project_map[project],
+                    str(self.docs_dir),
+                    site_dir,
+                    use_dot=self.config["use_dot"],
                 )
             else:
                 log.warning(

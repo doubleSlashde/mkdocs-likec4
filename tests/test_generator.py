@@ -155,3 +155,36 @@ class TestGenerate:
         output_idx = call_args.index("-o")
         output_path = call_args[output_idx + 1]
         assert "likec4_views_proj.js" in output_path
+
+    @patch("mkdocs_likec4.generator.subprocess.run")
+    def test_generate_use_dot_true_by_default(self, mock_run, tmp_path):
+        """Test that --no-use-dot flag is not added by default (use_dot=True)."""
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+
+        WebComponentGenerator.generate(
+            project_name=None,
+            project_dir=None,
+            build_dir="/docs",
+            site_dir=site_dir,
+        )
+
+        call_args = mock_run.call_args[0][0]
+        assert "--no-use-dot" not in call_args
+
+    @patch("mkdocs_likec4.generator.subprocess.run")
+    def test_generate_use_dot_false(self, mock_run, tmp_path):
+        """Test that --no-use-dot flag is added when use_dot=False."""
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+
+        WebComponentGenerator.generate(
+            project_name=None,
+            project_dir=None,
+            build_dir="/docs",
+            site_dir=site_dir,
+            use_dot=False,
+        )
+
+        call_args = mock_run.call_args[0][0]
+        assert "--no-use-dot" in call_args

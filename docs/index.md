@@ -5,7 +5,7 @@
 ## Requirements
 
 - [`likec4`](https://likec4.dev/tooling/cli/)
-- `graphviz` dependency
+- `graphviz` dependency (see also [use_dot](#use_dot) below)
 
 Check out the sample [Dockerfile](https://github.com/doubleSlashde/mkdocs-likec4/blob/main/Dockerfile) for how you can provide the likec4 and graphviz dependencies.
 
@@ -19,7 +19,7 @@ Check out the sample [Dockerfile](https://github.com/doubleSlashde/mkdocs-likec4
 ```yaml
 plugins:
   - search
-  - mkdocs-likec4
+  - likec4
 ```
 
 That's it! The plugin automatically:
@@ -27,6 +27,21 @@ That's it! The plugin automatically:
 - Discovers all projects by scanning for `likec4.config.json` files (**other configs formats are not supported yet!**)
 - Generates separate web components for each project
 - Loads web components into the document as required
+
+## Configuration
+
+### use_dot
+
+By default mkdocs-likec4 uses local graphviz binaries instead of bundled WASM (as it has [memory issues](https://github.com/likec4/likec4/issues?q=Memory%20type:Bug)).
+
+You can override it with the `use_dot: false` setting:
+
+```yaml
+plugins:
+  - search
+  - likec4:
+      use_dot: false
+```
 
 ## Usage
 

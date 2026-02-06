@@ -10,8 +10,10 @@ from mkdocs_likec4.plugin import LikeC4Plugin
 
 @pytest.fixture
 def plugin():
-    """Create a fresh plugin instance."""
-    return LikeC4Plugin()
+    """Create a fresh plugin instance with default config."""
+    p = LikeC4Plugin()
+    p.config = {"use_dot": True}
+    return p
 
 
 @pytest.fixture
@@ -356,3 +358,40 @@ class TestOnPostBuild:
         assert mock_generate.call_count == 1
         call_args = mock_generate.call_args[0]
         assert call_args[0] == "proj1"
+
+    @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
+    def test_passes_use_dot_true_by_default(self, mock_generate, plugin, tmp_path):
+        """Test that use_dot defaults to True."""
+        plugin.docs_dir = tmp_path / "docs"
+        plugin.docs_dir.mkdir()
+        plugin.project_map = {"proj": "proj"}
+        plugin.page_projects = {"page.md": {"proj"}}
+
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+        config = {"site_dir": str(site_dir)}
+
+        plugin.on_post_build(config)
+
+        mock_generate.assert_called_once()
+        assert mock_generate.call_args.kwargs["use_dot"] is True
+
+    @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
+    def test_passes_use_dot_false_when_configured(
+        self, mock_generate, plugin, tmp_path
+    ):
+        """Test that use_dot=False is passed when configured."""
+        plugin.docs_dir = tmp_path / "docs"
+        plugin.docs_dir.mkdir()
+        plugin.project_map = {"proj": "proj"}
+        plugin.page_projects = {"page.md": {"proj"}}
+        plugin.config["use_dot"] = False
+
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+        config = {"site_dir": str(site_dir)}
+
+        plugin.on_post_build(config)
+
+        mock_generate.assert_called_once()
+        assert mock_generate.call_args.kwargs["use_dot"] is False
