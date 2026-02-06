@@ -1,0 +1,551 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://doubleslashde.github.io/mkdocs-likec4/usage/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Usage - LikeC4 for MkDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/mkdocs-doubleslash-theme.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- https://github.com/squidfunk/mkdocs-material/blob/8fc61b5cb00845825179d6fd3e331c789f83187b/src/templates/partials/header.html -->
+<!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav
+      class="md-header__inner md-grid"
+      aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+        href=".."
+        title="LikeC4 for MkDocs"
+        class="md-header__button md-logo"
+        aria-label="LikeC4 for MkDocs"
+        data-md-component="logo"
+    >
+      
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 291">
+    <path d="M16.793 0 C17.781 -0.008 17.781 -0.008 18.788 -0.016 C20.981 -0.031 23.173 -0.024 25.366 -0.016 C26.943 -0.022 28.52 -0.029 30.097 -0.037 C34.372 -0.055 38.647 -0.054 42.922 -0.048 C46.493 -0.045 50.064 -0.051 53.635 -0.057 C62.060 -0.071 70.485 -0.070 78.910 -0.058 C87.598 -0.047 96.285 -0.061 104.973 -0.088 C112.437 -0.110 119.901 -0.117 127.365 -0.111 C131.821 -0.107 136.277 -0.110 140.733 -0.127 C144.922 -0.142 149.111 -0.138 153.301 -0.120 C154.837 -0.116 156.373 -0.119 157.909 -0.130 C160.009 -0.143 162.107 -0.131 164.207 -0.114 C165.381 -0.113 166.555 -0.113 167.765 -0.113 C172.652 0.643 175.588 2.811 178.850 6.453 C180.643 11.029 180.423 15.472 180.401 20.344 C180.408 21.462 180.415 22.580 180.422 23.733 C180.441 27.487 180.438 31.242 180.436 34.997 C180.445 37.685 180.455 40.374 180.466 43.063 C180.491 49.613 180.499 56.164 180.501 62.714 C180.503 68.038 180.509 73.363 180.518 78.687 C180.545 93.785 180.559 108.882 180.556 123.980 C180.556 124.794 180.556 125.607 180.556 126.446 C180.556 127.261 180.556 128.075 180.556 128.915 C180.555 142.121 180.583 155.327 180.625 168.533 C180.668 182.094 180.688 195.656 180.686 209.217 C180.685 216.831 180.693 224.444 180.725 232.057 C180.753 238.538 180.759 245.020 180.739 251.501 C180.729 254.808 180.732 258.113 180.755 261.420 C180.778 265.006 180.764 268.591 180.741 272.177 C180.756 273.220 180.772 274.262 180.788 275.336 C180.701 281.421 179.792 284.761 175.481 289.153 C172.280 291.821 169.663 291.525 165.581 291.548 C164.581 291.556 164.581 291.556 163.561 291.564 C161.317 291.579 159.073 291.588 156.829 291.596 C155.224 291.606 153.619 291.616 152.014 291.626 C146.734 291.657 141.454 291.678 136.174 291.696 C134.827 291.701 134.827 291.701 133.453 291.706 C124.985 291.737 116.517 291.764 108.049 291.781 C97.214 291.803 86.380 291.845 75.546 291.914 C67.930 291.961 60.314 291.986 52.698 291.993 C48.148 291.998 43.599 292.013 39.050 292.053 C34.768 292.090 30.486 292.098 26.204 292.085 C24.634 292.085 23.065 292.095 21.495 292.116 C8.168 292.288 8.168 292.288 3.572 288.469 C0.611 285.316 -0.127 283.181 -0.136 278.879 C-0.140 277.924 -0.145 276.970 -0.149 275.986 C-0.149 274.930 -0.149 273.874 -0.149 272.785 C-0.152 271.669 -0.156 270.553 -0.160 269.403 C-0.171 265.636 -0.175 261.870 -0.179 258.104 C-0.185 255.413 -0.192 252.723 -0.199 250.033 C-0.219 241.942 -0.229 233.851 -0.238 225.760 C-0.242 221.951 -0.247 218.142 -0.252 214.334 C-0.269 201.675 -0.283 189.017 -0.291 176.359 C-0.293 173.073 -0.295 169.787 -0.297 166.501 C-0.298 165.276 -0.298 165.276 -0.299 164.026 C-0.307 150.793 -0.332 137.560 -0.365 124.328 C-0.398 110.747 -0.416 97.167 -0.419 83.586 C-0.421 75.959 -0.430 68.332 -0.455 60.705 C-0.477 54.209 -0.485 47.714 -0.475 41.219 C-0.470 37.905 -0.474 34.591 -0.491 31.277 C-0.509 27.684 -0.502 24.091 -0.489 20.498 C-0.500 19.451 -0.511 18.403 -0.522 17.324 C-0.471 11.556 -0.137 7.785 3.998 3.388 C8.312 0.562 11.688 0.011 16.793 0 Z M15 15 C15 101.13 15 187.26 15 276 C64.83 276 114.66 276 166 276 C166 189.87 166 103.74 166 15 C116.17 15 66.34 15 15 15 Z" />
+    <path d="M134 143 C140.93 145.97 140.93 145.97 148 149 C145.2889 155.9928 142.2928 162.7308 138.9648 169.4492 C138.4861 170.4237 138.0073 171.3983 137.5141 172.4023 C135.992 175.4991 134.465 178.5934 132.9375 181.6875 C130.9448 185.7322 128.9542 189.7779 126.9648 193.8242 C126.4704 194.8295 125.976 195.8348 125.4666 196.8705 C119.1579 209.7202 113.0171 222.6498 106.8735 235.5788 C105.9689 237.4805 105.0621 239.3811 104.1543 241.2813 C103.2764 243.1189 102.3988 244.9568 101.5281 246.7979 C100.6481 248.6571 99.7605 250.5125 98.8711 252.3672 C98.3651 253.4305 97.8591 254.4938 97.3377 255.5894 C96 258 96 258 94 259 C91.1797 257.7852 91.1797 257.7852 87.875 256.0625 C86.7793 255.4966 85.6836 254.9307 84.5547 254.3477 C83.7116 253.903 82.8686 253.4582 82 253 C82.5961 249.4069 83.5655 246.4724 85.1602 243.2031 C85.616 242.2613 86.0718 241.3195 86.5413 240.3491 C87.0433 239.3264 87.5453 238.3037 88.0625 237.25 C88.8513 235.6251 88.8513 235.6251 89.656 233.9673 C90.8112 231.5886 91.9685 229.2111 93.1289 226.835 C95.0826 222.8335 97.0265 218.8273 98.9688 214.8203 C99.4718 213.7825 99.4718 213.7825 99.985 212.7237 C100.6676 211.3156 101.3501 209.9075 102.0326 208.4993 C103.0658 206.3683 104.0997 204.2376 105.1338 202.1069 C109.0483 194.0399 112.9472 185.9658 116.8125 177.875 C117.2397 176.9807 117.667 176.0864 118.1072 175.165 C120.437 170.2842 122.7605 165.4004 125.082 160.5156 C125.5908 159.4472 126.0996 158.3787 126.6238 157.2778 C127.6049 155.2172 128.5843 153.1557 129.5618 151.0933 C130.2157 149.7207 130.2157 149.7207 130.8828 148.3203 C131.4612 147.1024 131.4612 147.1024 132.0513 145.8599 C133 144 133 144 134 143 Z" />
+    <path d="M85 143 C86.5842 143.6228 88.1673 144.2483 89.75 144.875 C90.6317 145.223 91.5134 145.5711 92.4219 145.9297 C94.674 146.8647 96.8365 147.8778 99 149 C97.5756 153.6177 95.7118 157.8989 93.5781 162.2227 C93.2418 162.912 92.9054 163.6014 92.5589 164.3116 C91.4592 166.5635 90.3546 168.813 89.25 171.0625 C88.4783 172.6412 87.7071 174.2202 86.9363 175.7993 C85.7605 178.208 84.5845 180.6165 83.407 183.0244 C79.8512 190.2962 76.3269 197.583 72.8125 204.875 C71.6849 207.2136 70.5573 209.5521 69.4297 211.8906 C68.8725 213.0463 68.3153 214.2019 67.7412 215.3926 C66.2163 218.5534 64.6878 221.7124 63.1582 224.8709 C61.8891 227.4916 60.621 230.1128 59.3529 232.7339 C58.471 234.556 57.5878 236.3774 56.7043 238.1987 C53.3715 245.0899 50.13 252.0142 47 259 C42.0277 257.5083 37.5815 255.3954 33 253 C33.6305 247.9836 35.8264 243.8888 38.0508 239.4219 C38.4606 238.587 38.8704 237.7521 39.2927 236.8919 C40.6274 234.1754 41.97 231.4628 43.3125 228.75 C44.7013 225.9272 46.088 223.1035 47.4746 220.2797 C48.3909 218.4143 49.3079 216.5492 50.2256 214.6844 C53.5881 207.8509 56.9072 200.9985 60.1875 194.125 C65.1267 183.793 70.1204 173.4879 75.125 163.1875 C75.5036 162.408 75.8822 161.6285 76.2723 160.8255 C77.3505 158.6062 78.429 156.387 79.5078 154.1679 C79.8312 153.5025 80.1546 152.837 80.4878 152.1514 C81.9757 149.0927 83.4699 146.0378 85 143 Z"/>
+</svg>
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LikeC4 for MkDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+    
+    <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_2">
+    
+  
+</form>
+    
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    
+
+    <!-- Check if search is actually enabled - see https://t.ly/DT_0V -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      <a href="https://github.com/doubleSlashde/mkdocs-likec4" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mkdocs-likec4
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LikeC4 for MkDocs" class="md-nav__button md-logo" aria-label="LikeC4 for MkDocs" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 291">
+    <path d="M16.793 0 C17.781 -0.008 17.781 -0.008 18.788 -0.016 C20.981 -0.031 23.173 -0.024 25.366 -0.016 C26.943 -0.022 28.52 -0.029 30.097 -0.037 C34.372 -0.055 38.647 -0.054 42.922 -0.048 C46.493 -0.045 50.064 -0.051 53.635 -0.057 C62.060 -0.071 70.485 -0.070 78.910 -0.058 C87.598 -0.047 96.285 -0.061 104.973 -0.088 C112.437 -0.110 119.901 -0.117 127.365 -0.111 C131.821 -0.107 136.277 -0.110 140.733 -0.127 C144.922 -0.142 149.111 -0.138 153.301 -0.120 C154.837 -0.116 156.373 -0.119 157.909 -0.130 C160.009 -0.143 162.107 -0.131 164.207 -0.114 C165.381 -0.113 166.555 -0.113 167.765 -0.113 C172.652 0.643 175.588 2.811 178.850 6.453 C180.643 11.029 180.423 15.472 180.401 20.344 C180.408 21.462 180.415 22.580 180.422 23.733 C180.441 27.487 180.438 31.242 180.436 34.997 C180.445 37.685 180.455 40.374 180.466 43.063 C180.491 49.613 180.499 56.164 180.501 62.714 C180.503 68.038 180.509 73.363 180.518 78.687 C180.545 93.785 180.559 108.882 180.556 123.980 C180.556 124.794 180.556 125.607 180.556 126.446 C180.556 127.261 180.556 128.075 180.556 128.915 C180.555 142.121 180.583 155.327 180.625 168.533 C180.668 182.094 180.688 195.656 180.686 209.217 C180.685 216.831 180.693 224.444 180.725 232.057 C180.753 238.538 180.759 245.020 180.739 251.501 C180.729 254.808 180.732 258.113 180.755 261.420 C180.778 265.006 180.764 268.591 180.741 272.177 C180.756 273.220 180.772 274.262 180.788 275.336 C180.701 281.421 179.792 284.761 175.481 289.153 C172.280 291.821 169.663 291.525 165.581 291.548 C164.581 291.556 164.581 291.556 163.561 291.564 C161.317 291.579 159.073 291.588 156.829 291.596 C155.224 291.606 153.619 291.616 152.014 291.626 C146.734 291.657 141.454 291.678 136.174 291.696 C134.827 291.701 134.827 291.701 133.453 291.706 C124.985 291.737 116.517 291.764 108.049 291.781 C97.214 291.803 86.380 291.845 75.546 291.914 C67.930 291.961 60.314 291.986 52.698 291.993 C48.148 291.998 43.599 292.013 39.050 292.053 C34.768 292.090 30.486 292.098 26.204 292.085 C24.634 292.085 23.065 292.095 21.495 292.116 C8.168 292.288 8.168 292.288 3.572 288.469 C0.611 285.316 -0.127 283.181 -0.136 278.879 C-0.140 277.924 -0.145 276.970 -0.149 275.986 C-0.149 274.930 -0.149 273.874 -0.149 272.785 C-0.152 271.669 -0.156 270.553 -0.160 269.403 C-0.171 265.636 -0.175 261.870 -0.179 258.104 C-0.185 255.413 -0.192 252.723 -0.199 250.033 C-0.219 241.942 -0.229 233.851 -0.238 225.760 C-0.242 221.951 -0.247 218.142 -0.252 214.334 C-0.269 201.675 -0.283 189.017 -0.291 176.359 C-0.293 173.073 -0.295 169.787 -0.297 166.501 C-0.298 165.276 -0.298 165.276 -0.299 164.026 C-0.307 150.793 -0.332 137.560 -0.365 124.328 C-0.398 110.747 -0.416 97.167 -0.419 83.586 C-0.421 75.959 -0.430 68.332 -0.455 60.705 C-0.477 54.209 -0.485 47.714 -0.475 41.219 C-0.470 37.905 -0.474 34.591 -0.491 31.277 C-0.509 27.684 -0.502 24.091 -0.489 20.498 C-0.500 19.451 -0.511 18.403 -0.522 17.324 C-0.471 11.556 -0.137 7.785 3.998 3.388 C8.312 0.562 11.688 0.011 16.793 0 Z M15 15 C15 101.13 15 187.26 15 276 C64.83 276 114.66 276 166 276 C166 189.87 166 103.74 166 15 C116.17 15 66.34 15 15 15 Z" />
+    <path d="M134 143 C140.93 145.97 140.93 145.97 148 149 C145.2889 155.9928 142.2928 162.7308 138.9648 169.4492 C138.4861 170.4237 138.0073 171.3983 137.5141 172.4023 C135.992 175.4991 134.465 178.5934 132.9375 181.6875 C130.9448 185.7322 128.9542 189.7779 126.9648 193.8242 C126.4704 194.8295 125.976 195.8348 125.4666 196.8705 C119.1579 209.7202 113.0171 222.6498 106.8735 235.5788 C105.9689 237.4805 105.0621 239.3811 104.1543 241.2813 C103.2764 243.1189 102.3988 244.9568 101.5281 246.7979 C100.6481 248.6571 99.7605 250.5125 98.8711 252.3672 C98.3651 253.4305 97.8591 254.4938 97.3377 255.5894 C96 258 96 258 94 259 C91.1797 257.7852 91.1797 257.7852 87.875 256.0625 C86.7793 255.4966 85.6836 254.9307 84.5547 254.3477 C83.7116 253.903 82.8686 253.4582 82 253 C82.5961 249.4069 83.5655 246.4724 85.1602 243.2031 C85.616 242.2613 86.0718 241.3195 86.5413 240.3491 C87.0433 239.3264 87.5453 238.3037 88.0625 237.25 C88.8513 235.6251 88.8513 235.6251 89.656 233.9673 C90.8112 231.5886 91.9685 229.2111 93.1289 226.835 C95.0826 222.8335 97.0265 218.8273 98.9688 214.8203 C99.4718 213.7825 99.4718 213.7825 99.985 212.7237 C100.6676 211.3156 101.3501 209.9075 102.0326 208.4993 C103.0658 206.3683 104.0997 204.2376 105.1338 202.1069 C109.0483 194.0399 112.9472 185.9658 116.8125 177.875 C117.2397 176.9807 117.667 176.0864 118.1072 175.165 C120.437 170.2842 122.7605 165.4004 125.082 160.5156 C125.5908 159.4472 126.0996 158.3787 126.6238 157.2778 C127.6049 155.2172 128.5843 153.1557 129.5618 151.0933 C130.2157 149.7207 130.2157 149.7207 130.8828 148.3203 C131.4612 147.1024 131.4612 147.1024 132.0513 145.8599 C133 144 133 144 134 143 Z" />
+    <path d="M85 143 C86.5842 143.6228 88.1673 144.2483 89.75 144.875 C90.6317 145.223 91.5134 145.5711 92.4219 145.9297 C94.674 146.8647 96.8365 147.8778 99 149 C97.5756 153.6177 95.7118 157.8989 93.5781 162.2227 C93.2418 162.912 92.9054 163.6014 92.5589 164.3116 C91.4592 166.5635 90.3546 168.813 89.25 171.0625 C88.4783 172.6412 87.7071 174.2202 86.9363 175.7993 C85.7605 178.208 84.5845 180.6165 83.407 183.0244 C79.8512 190.2962 76.3269 197.583 72.8125 204.875 C71.6849 207.2136 70.5573 209.5521 69.4297 211.8906 C68.8725 213.0463 68.3153 214.2019 67.7412 215.3926 C66.2163 218.5534 64.6878 221.7124 63.1582 224.8709 C61.8891 227.4916 60.621 230.1128 59.3529 232.7339 C58.471 234.556 57.5878 236.3774 56.7043 238.1987 C53.3715 245.0899 50.13 252.0142 47 259 C42.0277 257.5083 37.5815 255.3954 33 253 C33.6305 247.9836 35.8264 243.8888 38.0508 239.4219 C38.4606 238.587 38.8704 237.7521 39.2927 236.8919 C40.6274 234.1754 41.97 231.4628 43.3125 228.75 C44.7013 225.9272 46.088 223.1035 47.4746 220.2797 C48.3909 218.4143 49.3079 216.5492 50.2256 214.6844 C53.5881 207.8509 56.9072 200.9985 60.1875 194.125 C65.1267 183.793 70.1204 173.4879 75.125 163.1875 C75.5036 162.408 75.8822 161.6285 76.2723 160.8255 C77.3505 158.6062 78.429 156.387 79.5078 154.1679 C79.8312 153.5025 80.1546 152.837 80.4878 152.1514 C81.9757 149.0927 83.4699 146.0378 85 143 Z"/>
+</svg>
+
+    </a>
+    LikeC4 for MkDocs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/doubleSlashde/mkdocs-likec4" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mkdocs-likec4
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sample
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sample
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/doubleSlashde/mkdocs-likec4/edit/main/docs/usage.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+  <h1>Usage</h1>
+
+<script src="../assets/mkdocs_likec4/likec4_views.js"></script>
+<div class="highlight"><span class="filename">LikeC4 Diagram</span><pre><span></span><code>&lt;likec4-view view-id=&quot;index&quot; browser=&quot;true&quot; dynamic-variant=&quot;diagram&quot;&gt;&lt;/likec4-view&gt;
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
