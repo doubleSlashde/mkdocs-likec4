@@ -75,7 +75,11 @@ class LikeC4Plugin(BasePlugin):
         page_path = self.docs_dir / page.file.src_path
 
         def replacer(match):
-            indent, options_text, view_id = match.group(1), match.group(2), match.group(3)
+            indent, options_text, view_id = (
+                match.group(1),
+                match.group(2),
+                match.group(3),
+            )
             opts = LikeC4Parser.parse_options(options_text.strip(), view_id.strip())
 
             if opts.project is None:
