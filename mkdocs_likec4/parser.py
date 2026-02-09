@@ -23,8 +23,7 @@ class LikeC4Parser:
     """Parser for likec4-view markdown code blocks."""
 
     PATTERN = re.compile(
-        r"```likec4-view([^\r\n]*)\r?\n(.+?)\r?\n```",
-        flags=re.DOTALL,
+        r"([ \t]*)```likec4-view([^\r\n]*)\r?\n([^\r\n]+)\r?\n\1```",
     )
     OPT_BROWSER = re.compile(r"\bbrowser=(true|false)\b")
     OPT_VARIANT = re.compile(r"\bdynamic-variant=(diagram|sequence)\b")
@@ -63,17 +62,14 @@ class LikeC4Parser:
                 opts.view_id,
             )
 
-        if opts.project and not cls.is_valid_identifier(opts.project):
+        valid_project = opts.project and cls.is_valid_identifier(opts.project)
+        if opts.project and not valid_project:
             log.warning(
                 "mkdocs-likec4: Invalid project name '%s': using 'likec4-view' tag",
                 opts.project,
             )
 
-        tag = (
-            f"{opts.project.lower()}-view"
-            if opts.project and cls.is_valid_identifier(opts.project)
-            else "likec4-view"
-        )
+        tag = f"{opts.project.lower()}-view" if valid_project else "likec4-view"
         return (
             f'<{tag} view-id="{escape(opts.view_id, quote=True)}" '
             f'browser="{opts.browser}" dynamic-variant="{opts.dynamic_variant}"></{tag}>'

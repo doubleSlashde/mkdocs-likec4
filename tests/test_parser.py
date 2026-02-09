@@ -38,8 +38,9 @@ my-view-id
 ```"""
         match = LikeC4Parser.PATTERN.search(markdown)
         assert match is not None
-        assert match.group(1) == ""
-        assert match.group(2) == "my-view-id"
+        assert match.group(1) == ""  # indentation
+        assert match.group(2) == ""  # options
+        assert match.group(3) == "my-view-id"  # view_id
 
     def test_code_block_with_options(self):
         """Test matching a code block with options."""
@@ -48,9 +49,9 @@ view-id-here
 ```"""
         match = LikeC4Parser.PATTERN.search(markdown)
         assert match is not None
-        assert "browser=false" in match.group(1)
-        assert "project=myproj" in match.group(1)
-        assert match.group(2) == "view-id-here"
+        assert "browser=false" in match.group(2)
+        assert "project=myproj" in match.group(2)
+        assert match.group(3) == "view-id-here"
 
     def test_no_match_for_other_code_blocks(self):
         """Test that other code blocks don't match."""
@@ -73,8 +74,55 @@ view2
 ```"""
         matches = list(LikeC4Parser.PATTERN.finditer(markdown))
         assert len(matches) == 2
-        assert matches[0].group(2) == "view1"
-        assert matches[1].group(2) == "view2"
+        assert matches[0].group(3) == "view1"
+        assert matches[1].group(3) == "view2"
+
+    def test_indented_code_block_in_list(self):
+        """Test matching an indented code block inside a list."""
+        markdown = """- Item with diagram:
+    ```likec4-view
+    my-view
+    ```"""
+        match = LikeC4Parser.PATTERN.search(markdown)
+        assert match is not None
+        assert match.group(1) == "    "  # indentation
+        assert match.group(3).strip() == "my-view"
+
+    def test_indented_code_block_with_options(self):
+        """Test matching an indented code block with options."""
+        markdown = """1. First item:
+    ```likec4-view browser=false
+    view-id
+    ```"""
+        match = LikeC4Parser.PATTERN.search(markdown)
+        assert match is not None
+        assert match.group(1) == "    "
+        assert "browser=false" in match.group(2)
+        assert match.group(3).strip() == "view-id"
+
+    def test_missing_closing_fence_does_not_match(self):
+        """Test that missing closing fence doesn't capture entire document."""
+        markdown = """```likec4-view
+my-view
+
+## More content here
+
+```python
+code
+```"""
+        match = LikeC4Parser.PATTERN.search(markdown)
+        # Should NOT match - prevents leaking document content in error messages
+        assert match is None
+
+    def test_multiline_body_does_not_match(self):
+        """Test that multi-line body content doesn't match."""
+        markdown = """```likec4-view
+line1
+line2
+```"""
+        match = LikeC4Parser.PATTERN.search(markdown)
+        # Should NOT match - view_id must be a single line
+        assert match is None
 
 
 class TestParseOptions:

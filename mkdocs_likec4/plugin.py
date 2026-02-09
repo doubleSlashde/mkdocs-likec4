@@ -75,21 +75,14 @@ class LikeC4Plugin(BasePlugin):
         page_path = self.docs_dir / page.file.src_path
 
         def replacer(match):
-            options_text = (match.group(1) or "").strip()
-            view_id = match.group(2).strip()
-            opts = LikeC4Parser.parse_options(options_text, view_id)
+            indent, options_text, view_id = match.group(1), match.group(2), match.group(3)
+            opts = LikeC4Parser.parse_options(options_text.strip(), view_id.strip())
 
             if opts.project is None:
                 opts.project = self._find_nearest_project(page_path, self.docs_dir)
-                if opts.project:
-                    log.debug(
-                        "mkdocs-likec4: Auto-detected project '%s' for %s",
-                        opts.project,
-                        page_file,
-                    )
 
             projects_on_page.add(opts.project)
-            return LikeC4Parser.to_html(opts)
+            return indent + LikeC4Parser.to_html(opts)
 
         markdown = LikeC4Parser.PATTERN.sub(replacer, markdown)
         if projects_on_page:

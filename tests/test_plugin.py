@@ -269,6 +269,25 @@ Some text."""
 
         assert result == markdown
 
+    def test_preserves_indentation_in_list(self, plugin, docs_dir):
+        """Test that indentation is preserved for code blocks in lists."""
+        plugin.docs_dir = docs_dir
+        plugin.project_map = {None: "."}
+
+        page = MagicMock()
+        page.file.src_uri = "index.md"
+        page.file.src_path = "index.md"
+
+        markdown = """- Item with diagram:
+    ```likec4-view
+    my-view
+    ```"""
+
+        result = plugin.on_page_markdown(markdown, page)
+
+        # The HTML tag should be indented to match the code block
+        assert '    <likec4-view view-id="my-view"' in result
+
 
 class TestOnPageContent:
     """Tests for the on_page_content method."""

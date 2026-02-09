@@ -11,7 +11,8 @@ theme:
 
 plugins:
   - search
-  - likec4
+  - likec4:
+      use_dot: true
   - doubleslash-theme
 
 markdown_extensions:
