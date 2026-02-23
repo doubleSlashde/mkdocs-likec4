@@ -1,0 +1,202 @@
+[data-md-color-scheme="default"] {
+    /* Primary color shades */
+    --md-primary-fg-color: #ffffff; /* Foreground color. Mainly used for header */
+    --md-primary-bg-color: #00759e; /* Icon and text color (header) */
+    --md-primary-bg-color--light: #00759e; /* Search placeholder text color */
+    --md-default-fg-color--light: #000000;
+
+    /* Accent color shades */
+    --md-accent-fg-color: #00759e; /* Link hover color, search item match color */
+    --md-accent-fg-color--transparent: #00a5e120; /* search item hover color */
+    --md-accent-bg-color: #ffffff; /* text color for hovered items (back to top, linked tag, ..) */
+
+    --md-typeset-a-color: #00759e; /* Active link color */
+    --md-custom-accent-color: #00759e;
+    --md-custom-text-color: #ffffff;
+
+    --language-toggle-active-color: #ffffff;
+    --language-toggle-active-text-color: #00759e;
+    --language-toggle-inactive-text-color: #ffffff;
+
+    --md-typeset-color: #000000;
+
+    --md-footer-bg-color: #6d6d6d;
+}
+
+[data-md-color-scheme="slate"] {
+    --md-hue: 210;
+
+    --md-default-fg-color: #d7e9f4; /* Text color */
+    --md-default-bg-color: #15202b; /* Background color */
+    --md-default-fg-color--light: #d7e9f4;
+
+    /* Primary color shades */
+    --md-primary-fg-color: #22303c; /* Foreground color. Mainly used for header */
+    --md-primary-bg-color: #77ddff; /* Icon and text color (header) */
+    --md-primary-bg-color--light: #77ddff; /* Search placeholder text color */
+
+    /* Accent color shades */
+    --md-accent-fg-color: #77ddff; /* Link/card hover color, search item match color */
+    --md-accent-fg-color--transparent: #00a5e120; /* search item hover color */
+    --md-accent-bg-color: #ffffff; /* text color for hovered items (back to top, linked tag, ..) */
+
+    --md-typeset-a-color: #77ddff; /* Active link color */
+    --md-custom-accent-color: #15202b;
+    --md-custom-text-color: #d7e9f4;
+
+    --language-toggle-active-color: #22303c;
+    --language-toggle-active-text-color: #77ddff;
+    --language-toggle-inactive-text-color: #77ddff;
+
+    --md-typeset-color: #ffffff;
+
+    --md-footer-bg-color--dark: #22303c;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter SemiBold";
+    src: url("../fonts/Inter-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
+
+:root {
+    --md-text-font: Inter;
+
+    .md-header--shadow {
+        box-shadow: 0 0 6px #00000029;
+    }
+
+    .md-header {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+
+    .md-search__form {
+        background-color: var(--md-primary-fg-color);
+        border: 1px solid var(--md-primary-bg-color);
+        border-radius: 8px;
+    }
+
+    .md-tabs__item {
+        color: var(--md-typeset-color);
+        opacity: 1;
+        font-weight: bold;
+    }
+
+    .md-tabs__item a:hover {
+        color: var(--md-typeset-a-color);
+    }
+
+    .md-tabs__item--active {
+        color: var(--md-typeset-a-color);
+        opacity: 1;
+        font-weight: bold;
+    }
+
+    .md-top:hover {
+        color: var(--md-default-bg-color);
+    }
+
+    .md-header__title {
+        margin-left: 0.5rem;
+        margin-right: 0.4rem;
+    }
+
+    .md-logo svg {
+        color: var(--md-default-fg-color--light);
+        height: 1.6rem;
+        width: auto;
+    }
+
+    .md-header__button.md-logo {
+        margin: 0.2rem;
+        padding: 0.2rem;
+    }
+
+    .md-status {
+        display: none;
+    }
+
+    .md-sidebar[hidden] ~ .md-content {
+        border-left: none;
+    }
+
+    .md-content {
+        border-left: solid;
+        border-width: thin;
+        border-color: #6d6d6d80;
+    }
+
+    .md-content .md-typeset h1,
+    .md-content .md-typeset h2,
+    .md-content .md-typeset h3,
+    .md-content .md-typeset h4,
+    .md-content .md-typeset h5,
+    .md-content .md-typeset h6 {
+        font-family: "Inter SemiBold", sans-serif;
+        font-weight: 600;
+    }
+
+    body {
+        font-size: 18px;
+        line-height: 27px;
+    }
+
+    .md-content .md-typeset h1 {
+        font-size: 45px;
+        margin-bottom: 30px;
+    }
+
+    .md-content .md-typeset h2 {
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+
+    .md-content .md-typeset h3 {
+        font-size: 25px;
+        margin-bottom: 12px;
+    }
+
+    .md-typeset a {
+        text-decoration: underline;
+        color: var(--md-typeset-a-color);
+        transition: text-decoration-thickness 0.2s ease;
+    }
+
+    .md-typeset a:hover {
+        text-decoration-thickness: 2px;
+    }
+
+    [data-md-color-scheme="default"] .md-typeset ul:not([class]) > li {
+        list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236d6d6d' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/></svg>");
+    }
+
+    [data-md-color-scheme="slate"] .md-typeset ul:not([class]) > li {
+        list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffffff' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/></svg>");
+    }
+
+    .md-typeset table:not([class]) {
+        border-collapse: collapse;
+        border-radius: 10px;
+    }
+
+    tr:last-child {
+        border-bottom: none;
+    }
+
+    td:last-child {
+        border-right: none;
+    }
+
+    .md-path__item:not(:first-child) {
+        align-items: center;
+    }
+}
