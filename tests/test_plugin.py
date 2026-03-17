@@ -5,15 +5,20 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
+from mkdocs_likec4.generator import WebComponentGenerator
 from mkdocs_likec4.plugin import LikeC4Plugin
 
 
 @pytest.fixture
 def plugin():
     """Create a fresh plugin instance with default config."""
+    LikeC4Plugin._project_hashes.clear()
+    LikeC4Plugin._cached_outputs.clear()
     p = LikeC4Plugin()
     p.config = {"use_dot": True}
-    return p
+    yield p
+    LikeC4Plugin._project_hashes.clear()
+    LikeC4Plugin._cached_outputs.clear()
 
 
 @pytest.fixture
@@ -414,3 +419,166 @@ class TestOnPostBuild:
 
         mock_generate.assert_called_once()
         assert mock_generate.call_args.kwargs["use_dot"] is False
+
+    @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
+    def test_skips_generation_when_hash_unchanged_and_cached(
+        self, mock_generate, plugin, tmp_path
+    ):
+        """Test that generation is skipped when hash is unchanged and output is cached."""
+        plugin.docs_dir = tmp_path / "docs"
+        plugin.docs_dir.mkdir()
+        proj_dir = plugin.docs_dir / "proj"
+        proj_dir.mkdir()
+        (proj_dir / "model.c4").write_text("content")
+
+        plugin.project_map = {"proj": "proj"}
+        plugin.page_projects = {"page.md": {"proj"}}
+
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+        config = {"site_dir": str(site_dir)}
+
+        # Pre-populate the hash and output caches
+        plugin._project_hashes["proj"] = WebComponentGenerator.compute_project_hash(
+            proj_dir
+        )
+        plugin._cached_outputs["proj"] = b"cached js content"
+
+        plugin.on_post_build(config)
+
+        mock_generate.assert_not_called()
+        # Verify cached output was written to site_dir
+        output_file = site_dir / WebComponentGenerator.get_script_path("proj")
+        assert output_file.exists()
+        assert output_file.read_bytes() == b"cached js content"
+
+    @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
+    def test_generates_when_hash_changed(self, mock_generate, plugin, tmp_path):
+        """Test that generation runs when source hash has changed."""
+        plugin.docs_dir = tmp_path / "docs"
+        plugin.docs_dir.mkdir()
+        proj_dir = plugin.docs_dir / "proj"
+        proj_dir.mkdir()
+        (proj_dir / "model.c4").write_text("content")
+
+        plugin.project_map = {"proj": "proj"}
+        plugin.page_projects = {"page.md": {"proj"}}
+        plugin._project_hashes["proj"] = "stale-hash"
+        plugin._cached_outputs["proj"] = b"stale"
+
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+        config = {"site_dir": str(site_dir)}
+
+        plugin.on_post_build(config)
+
+        mock_generate.assert_called_once()
+
+    @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
+    def test_generates_when_no_cached_output(self, mock_generate, plugin, tmp_path):
+        """Test that generation runs when there is no cached output."""
+        plugin.docs_dir = tmp_path / "docs"
+        plugin.docs_dir.mkdir()
+        proj_dir = plugin.docs_dir / "proj"
+        proj_dir.mkdir()
+        (proj_dir / "model.c4").write_text("content")
+
+        plugin.project_map = {"proj": "proj"}
+        plugin.page_projects = {"page.md": {"proj"}}
+
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+        config = {"site_dir": str(site_dir)}
+
+        # Set hash to current value but no cached output
+        plugin._project_hashes["proj"] = WebComponentGenerator.compute_project_hash(
+            proj_dir
+        )
+
+        plugin.on_post_build(config)
+
+        mock_generate.assert_called_once()
+
+    @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
+    def test_stores_hash_and_output_after_successful_generation(
+        self, mock_generate, plugin, tmp_path
+    ):
+        """Test that hash and cached output are stored after successful generation."""
+        plugin.docs_dir = tmp_path / "docs"
+        plugin.docs_dir.mkdir()
+        proj_dir = plugin.docs_dir / "proj"
+        proj_dir.mkdir()
+        (proj_dir / "model.c4").write_text("content")
+
+        plugin.project_map = {"proj": "proj"}
+        plugin.page_projects = {"page.md": {"proj"}}
+
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+        config = {"site_dir": str(site_dir)}
+
+        # Simulate generate() creating the output file
+        output_path = site_dir / WebComponentGenerator.get_script_path("proj")
+
+        def fake_generate(*args, **kwargs):
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_bytes(b"generated js")
+
+        mock_generate.side_effect = fake_generate
+
+        plugin.on_post_build(config)
+
+        expected_hash = WebComponentGenerator.compute_project_hash(proj_dir)
+        assert LikeC4Plugin._project_hashes["proj"] == expected_hash
+        assert LikeC4Plugin._cached_outputs["proj"] == b"generated js"
+
+    @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
+    def test_does_not_store_hash_when_generation_fails(
+        self, mock_generate, plugin, tmp_path
+    ):
+        """Test that hash is not updated when generation fails."""
+        plugin.docs_dir = tmp_path / "docs"
+        plugin.docs_dir.mkdir()
+        proj_dir = plugin.docs_dir / "proj"
+        proj_dir.mkdir()
+        (proj_dir / "model.c4").write_text("content")
+
+        plugin.project_map = {"proj": "proj"}
+        plugin.page_projects = {"page.md": {"proj"}}
+
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+        config = {"site_dir": str(site_dir)}
+
+        # generate() does not create the output file (simulates failure)
+        plugin.on_post_build(config)
+
+        assert "proj" not in LikeC4Plugin._project_hashes
+        assert "proj" not in LikeC4Plugin._cached_outputs
+
+    @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
+    def test_caching_with_default_root_project(self, mock_generate, plugin, tmp_path):
+        """Test cache skip/hit for the None (root/default) project."""
+        plugin.docs_dir = tmp_path / "docs"
+        plugin.docs_dir.mkdir()
+        (plugin.docs_dir / "model.c4").write_text("content")
+
+        plugin.project_map = {None: "."}
+        plugin.page_projects = {"page.md": {None}}
+
+        site_dir = tmp_path / "site"
+        site_dir.mkdir()
+        config = {"site_dir": str(site_dir)}
+
+        # Pre-populate hash and cache for the None project
+        plugin._project_hashes[None] = WebComponentGenerator.compute_project_hash(
+            plugin.docs_dir
+        )
+        plugin._cached_outputs[None] = b"cached root js"
+
+        plugin.on_post_build(config)
+
+        mock_generate.assert_not_called()
+        output_file = site_dir / WebComponentGenerator.get_script_path(None)
+        assert output_file.exists()
+        assert output_file.read_bytes() == b"cached root js"

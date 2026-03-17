@@ -1,3 +1,4 @@
+import hashlib
 import logging
 import subprocess
 from pathlib import Path
@@ -12,6 +13,21 @@ class WebComponentGenerator:
     """Generates LikeC4 web component JavaScript files."""
 
     ASSETS_DIR = "assets/mkdocs_likec4"
+
+    @classmethod
+    def compute_project_hash(cls, project_dir: Path) -> str:
+        """Compute a content hash of all LikeC4 source files in a project directory."""
+        hasher = hashlib.md5()
+        files = sorted(
+            f
+            for f in project_dir.rglob("*")
+            if f.is_file()
+            and (f.suffix in {".c4", ".likec4"} or f.name == "likec4.config.json")
+        )
+        for f in files:
+            hasher.update(str(f.relative_to(project_dir)).encode())
+            hasher.update(f.read_bytes())
+        return hasher.hexdigest()
 
     @classmethod
     def get_script_path(cls, project: Optional[str]) -> str:

@@ -6,6 +6,71 @@ from unittest.mock import patch
 from mkdocs_likec4.generator import WebComponentGenerator
 
 
+class TestComputeProjectHash:
+    """Tests for the compute_project_hash method."""
+
+    def test_consistent_hash(self, tmp_path):
+        """Test that hashing the same files returns the same hash."""
+        (tmp_path / "model.c4").write_text("model content")
+        (tmp_path / "views.likec4").write_text("view content")
+
+        hash1 = WebComponentGenerator.compute_project_hash(tmp_path)
+        hash2 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        assert hash1 == hash2
+
+    def test_hash_changes_on_content_change(self, tmp_path):
+        """Test that hash changes when file content changes."""
+        f = tmp_path / "model.c4"
+        f.write_text("original")
+        hash1 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        f.write_text("modified")
+        hash2 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        assert hash1 != hash2
+
+    def test_empty_directory(self, tmp_path):
+        """Test that an empty directory returns a consistent hash."""
+        hash1 = WebComponentGenerator.compute_project_hash(tmp_path)
+        hash2 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        assert hash1 == hash2
+
+    def test_ignores_non_likec4_files(self, tmp_path):
+        """Test that non-LikeC4 files are ignored."""
+        (tmp_path / "model.c4").write_text("model")
+        hash1 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        (tmp_path / "readme.md").write_text("docs")
+        hash2 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        assert hash1 == hash2
+
+    def test_includes_config_json(self, tmp_path):
+        """Test that likec4.config.json is included in hash."""
+        hash1 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        (tmp_path / "likec4.config.json").write_text('{"name": "test"}')
+        hash2 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        assert hash1 != hash2
+
+    def test_nested_subdirectory_files(self, tmp_path):
+        """Test that .c4 files in subdirectories are included and path affects hash."""
+        (tmp_path / "model.c4").write_text("content")
+        hash1 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        # Move same content to a subdirectory — hash should change due to different path
+        (tmp_path / "model.c4").unlink()
+        sub = tmp_path / "sub"
+        sub.mkdir()
+        (sub / "model.c4").write_text("content")
+        hash2 = WebComponentGenerator.compute_project_hash(tmp_path)
+
+        assert hash1 != hash2
+
+
 class TestGetScriptPath:
     """Tests for the get_script_path method."""
 

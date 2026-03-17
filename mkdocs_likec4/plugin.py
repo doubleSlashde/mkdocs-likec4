@@ -18,6 +18,9 @@ class LikeC4Plugin(BasePlugin):
 
     config_scheme = (("use_dot", config_options.Type(bool, default=True)),)
 
+    _project_hashes: dict[Optional[str], str] = {}
+    _cached_outputs: dict[Optional[str], bytes] = {}
+
     def __init__(self):
         self.docs_dir = None
         self.page_projects = {}
@@ -111,16 +114,37 @@ class LikeC4Plugin(BasePlugin):
         all_projects = {p for projects in self.page_projects.values() for p in projects}
 
         for project in all_projects:
-            if project in self.project_map:
-                WebComponentGenerator.generate(
-                    project,
-                    self.project_map[project],
-                    str(self.docs_dir),
-                    site_dir,
-                    use_dot=self.config["use_dot"],
-                )
-            else:
+            if project not in self.project_map:
                 log.warning(
                     "mkdocs-likec4: Skipping generation for undiscovered project: %s",
                     project,
                 )
+                continue
+
+            project_source_dir = self.docs_dir / self.project_map[project]
+            current_hash = WebComponentGenerator.compute_project_hash(
+                project_source_dir
+            )
+            output_file = site_dir / WebComponentGenerator.get_script_path(project)
+            previous_hash = self._project_hashes.get(project)
+
+            if current_hash == previous_hash and project in self._cached_outputs:
+                log.info(
+                    "mkdocs-likec4: Skipping unchanged project '%s', "
+                    "restoring cached output",
+                    project or "default",
+                )
+                output_file.parent.mkdir(parents=True, exist_ok=True)
+                output_file.write_bytes(self._cached_outputs[project])
+                continue
+
+            WebComponentGenerator.generate(
+                project,
+                self.project_map[project],
+                str(self.docs_dir),
+                site_dir,
+                use_dot=self.config["use_dot"],
+            )
+            if output_file.exists():
+                self._project_hashes[project] = current_hash
+                self._cached_outputs[project] = output_file.read_bytes()
