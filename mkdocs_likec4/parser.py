@@ -70,7 +70,9 @@ class LikeC4Parser:
             )
 
         tag = f"{opts.project.lower()}-view" if valid_project else "likec4-view"
-        return (
-            f'<{tag} view-id="{escape(opts.view_id, quote=True)}" '
-            f'browser="{opts.browser}" dynamic-variant="{opts.dynamic_variant}"></{tag}>'
-        )
+        attrs = f'view-id="{escape(opts.view_id, quote=True)}"'
+        if opts.browser != "true":
+            attrs += f' browser="{opts.browser}"'
+        if opts.dynamic_variant != "diagram":
+            attrs += f' dynamic-variant="{opts.dynamic_variant}"'
+        return f'<{tag} {attrs}></{tag}>'
