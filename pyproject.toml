@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mkdocs-likec4"
 description = "LikeC4 for MkDocs"
-version = "1.1.1"
+version = "1.1.1" # x-yeet-version
 authors = [{ name = "Jonas Häusler", email = "jonas.haeusler@doubleslash.de" }]
 readme = "README.md"
 requires-python = ">=3.10"
@@ -20,22 +20,8 @@ include = ["mkdocs_likec4*"]
 [project.entry-points."mkdocs.plugins"]
 "likec4" = "mkdocs_likec4.plugin:LikeC4Plugin"
 
-[tool.commitizen]
-name = "cz_customize"
-tag_format = "v$version"
-version_provider = "uv"
-version_files = [
-    "pyproject.toml:version"
-]
-
-[tool.commitizen.customize]
-bump_pattern = '^(feat|fix|ci|build|perf|refactor|chore)'
-bump_map = { feat = "MINOR", fix = "PATCH", ci = "PATCH", build = "PATCH", perf = "PATCH", refactor = "PATCH", 'chore' = "PATCH" }
-schema_pattern = '^(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump|chore)(\(\S+\))?\:?\s.*'
-
 [dependency-groups]
 dev = [
-    "commitizen>=3.31.0",
     "ruff>=0.14.11",
 ]
 test = [

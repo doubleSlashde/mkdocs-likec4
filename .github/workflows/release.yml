@@ -1,31 +1,58 @@
 name: Release
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: write
-  id-token: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.detect-tag.outputs.tag }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+      - name: Generate GitHub App token
+        id: generate-token
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3
+        with:
+          app-id: ${{ vars.YEET_APP_ID }}
+          private-key: ${{ secrets.YEET_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - name: Run yeet
+        uses: docker://ghcr.io/monkescience/yeet:v0.9.3
+        with:
+          args: release
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+      - id: detect-tag
+        run: |
+          tag=$(git tag --points-at HEAD | grep '^v' | head -n1 || true)
+          if [ -n "$tag" ]; then
+            echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          fi
+
+  publish:
+    needs: release
+    if: needs.release.outputs.tag != ''
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      - uses: commitizen-tools/commitizen-action@0.24.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          changelog_increment_filename: body.md
-      - uses: ncipollo/release-action@v1
-        with:
-          tag: v${{ env.REVISION }}
-          bodyFile: "body.md"
-          skipIfReleaseExists: true
-      - run: |
-          git fetch origin tag v${{ env.REVISION }}
-          git checkout v${{ env.REVISION }}
+          ref: ${{ needs.release.outputs.tag }}
       - uses: astral-sh/setup-uv@v5
       - run: uv build
       - uses: pypa/gh-action-pypi-publish@release/v1

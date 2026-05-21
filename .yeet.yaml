@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/monkescience/yeet/main/yeet.schema.json
+
+provider: github
+
+bump_types:
+  minor:
+    - feat
+  patch:
+    - fix
+    - perf
+    - ci
+    - build
+    - refactor
+    - chore
+
+targets:
+  mkdocs-likec4:
+    type: path
+    path: .
+    tag_prefix: v
+    version_files:
+      - pyproject.toml
