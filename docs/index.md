@@ -89,17 +89,3 @@ index
     If you don't specify a project in a multi-project setup, and the page it not under a 
     `likec4.config.json` file, the build will fail:
     > Error: Specify exact project, known: [...]
-
-## Known Issues
-
-### My diagram fonts appear larger in MkDocs than in the Likec4 editor
-
-Diagram fronts currently render at 125% due to an incompatibility between MkDocs and LikeC4.
-
-??? Details
-
-    MkDocs uses a root font size of 20px to fix Chinese character rendering issues, and resets it to
-    10px for all body inline elements (see 
-    [mkdocs-material#911](https://github.com/squidfunk/mkdocs-material/issues/911)).
-    LikeC4 uses font sizes relative to the root font size. The combination of the 20px root font size
-    and the relative font sizes in LikeC4 results in a font size of 125% for `mkdocs-likec4` diagrams.
