@@ -1,3 +1,14 @@
+## v1.2.0 (2026-05-22)
+
+### Features
+
+- sync likec4 views color-scheme with mkdocs theme
+
+### Build
+
+- pin likec4 cli via package.json for dependabot tracking
+- pin build deps and have dependabot track them
+
 ## v1.1.2 (2026-05-21)
 
 ### Bug Fixes
