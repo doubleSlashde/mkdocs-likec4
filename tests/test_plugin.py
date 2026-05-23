@@ -397,9 +397,7 @@ class TestOnPostBuild:
         assert mock_generate.call_args.kwargs["use_dot"] is False
 
     @patch("mkdocs_likec4.plugin.WebComponentGenerator.generate")
-    def test_passes_use_dot_true_when_configured(
-        self, mock_generate, plugin, tmp_path
-    ):
+    def test_passes_use_dot_true_when_configured(self, mock_generate, plugin, tmp_path):
         """Test that use_dot=True is passed when configured."""
         plugin.docs_dir = tmp_path / "docs"
         plugin.docs_dir.mkdir()
