@@ -1,3 +1,13 @@
+## v1.2.1 (2026-05-27)
+
+### Build
+
+- **deps-dev**: bump ruff from 0.15.13 to 0.15.14
+
+### Chore
+
+- default use_dot to false
+
 ## v1.2.0 (2026-05-22)
 
 ### Features
