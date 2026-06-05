@@ -2,6 +2,6 @@
   "name": "mkdocs-likec4-build",
   "private": true,
   "dependencies": {
-    "likec4": "1.57.0"
+    "likec4": "1.58.0"
   }
 }
