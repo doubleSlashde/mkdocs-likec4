@@ -1,3 +1,17 @@
+## v1.2.2 (2026-06-20)
+
+### Build
+
+- **deps-dev**: bump pytest from 9.0.3 to 9.1.1
+- **deps-dev**: bump ruff from 0.15.17 to 0.15.18
+- **deps**: bump vite in the npm_and_yarn group across 1 directory
+- **deps-dev**: bump ruff from 0.15.16 to 0.15.17
+- **deps**: bump likec4 from 1.57.0 to 1.58.0
+- **deps-dev**: bump ruff from 0.15.15 to 0.15.16
+- **deps-dev**: bump commitizen from 4.16.2 to 4.16.3
+- **deps-dev**: bump ruff from 0.15.14 to 0.15.15
+- **deps**: bump mkdocs-doubleslash-theme from 1.2.0 to 1.2.1
+
 ## v1.2.1 (2026-05-27)
 
 ### Build
