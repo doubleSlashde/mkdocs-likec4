@@ -1,6 +1,7 @@
 """Tests for the LikeC4 plugin module."""
 
 import json
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -75,7 +76,7 @@ class TestDiscoverProjects:
         plugin._discover_projects(docs_dir)
 
         assert "nested" in plugin.project_map
-        assert plugin.project_map["nested"] == "sub/nested"
+        assert plugin.project_map["nested"] == str(Path("sub/nested"))
 
     def test_discover_no_projects_uses_default(self, plugin, docs_dir):
         """Test that no projects defaults to root project."""

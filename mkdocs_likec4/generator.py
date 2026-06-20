@@ -1,4 +1,5 @@
 import logging
+import shutil
 import subprocess
 from pathlib import Path
 from typing import Optional
@@ -55,7 +56,13 @@ class WebComponentGenerator:
             project_path,
         )
 
-        cmd = ["npx", "likec4", "codegen", "webcomponent"]
+        npx = shutil.which("npx")
+        if not npx:
+            log.error(
+                "mkdocs-likec4: 'npx' or 'likec4' command not found. "
+                "Ensure Node.js and likec4 are installed."
+            )
+        cmd = [npx, "likec4", "codegen", "webcomponent"]
         if not use_dot:
             cmd.append("--no-use-dot")
         if project_name is not None:

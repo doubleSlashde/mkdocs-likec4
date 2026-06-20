@@ -34,7 +34,8 @@ class TestGenerate:
     """Tests for the generate method."""
 
     @patch("mkdocs_likec4.generator.subprocess.run")
-    def test_generate_default_project(self, mock_run, tmp_path):
+    @patch("mkdocs_likec4.generator.shutil.which")
+    def test_generate_default_project(self, mock_which, mock_run, tmp_path):
         """Test generating web component for default project."""
         site_dir = tmp_path / "site"
         site_dir.mkdir()
@@ -46,10 +47,11 @@ class TestGenerate:
             site_dir=site_dir,
         )
 
+        mock_which.assert_called_once_with("npx")
         mock_run.assert_called_once()
         call_args = mock_run.call_args[0][0]
         call_kwargs = mock_run.call_args[1]
-        assert call_args[0] == "npx"
+        assert call_args[0] == mock_which.return_value
         assert call_args[1] == "likec4"
         assert call_args[2] == "codegen"
         assert call_args[3] == "webcomponent"
