@@ -28,19 +28,21 @@ jobs:
 
   docs:
     needs: [verify, test]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-      - run: npm install -g likec4
-      - run: pip install mkdocs-material mkdocs-doubleslash-theme .
-      - run: mkdocs gh-deploy --force
+      - run: npm ci
+      - run: pip install -r requirements-docs.txt .
+      # strict turns a failed likec4 codegen, which the plugin only logs, into a failed build
+      - run: mkdocs build --strict
+      - if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          mkdocs gh-deploy --force
