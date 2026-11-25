@@ -15,8 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-      - run: uvx ruff check --output-format=github
-      - run: uvx ruff format --check
+      - run: uv run ruff check --output-format=github
+      - run: uv run ruff format --check
       - run: uv build
 
   test:
