@@ -2,7 +2,6 @@ import logging
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Optional
 
 from .parser import LikeC4Parser
 
@@ -15,7 +14,7 @@ class WebComponentGenerator:
     ASSETS_DIR = "assets/mkdocs_likec4"
 
     @classmethod
-    def get_script_path(cls, project: Optional[str]) -> str:
+    def get_script_path(cls, project: str | None) -> str:
         """Get the site-relative path for a project's web component JS file."""
         if project is None:
             return f"{cls.ASSETS_DIR}/likec4_views.js"
@@ -24,8 +23,8 @@ class WebComponentGenerator:
     @classmethod
     def generate(
         cls,
-        project_name: Optional[str],
-        project_dir: Optional[str],
+        project_name: str | None,
+        project_dir: str | None,
         build_dir: str,
         site_dir: Path,
         *,

@@ -2,7 +2,6 @@ import logging
 import shutil
 from importlib import resources
 from pathlib import Path
-from typing import Optional
 
 import pyjson5
 from mkdocs.config import config_options
@@ -61,7 +60,7 @@ class LikeC4Plugin(BasePlugin):
                 "mkdocs-likec4: No projects discovered, using default root project"
             )
 
-    def _find_nearest_project(self, page_path: Path, docs_dir: Path) -> Optional[str]:
+    def _find_nearest_project(self, page_path: Path, docs_dir: Path) -> str | None:
         """Find the nearest LikeC4 project by traversing upward from the page."""
         current = page_path.parent
         while current >= docs_dir:
