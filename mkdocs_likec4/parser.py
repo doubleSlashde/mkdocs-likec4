@@ -2,7 +2,6 @@ import logging
 import re
 from dataclasses import dataclass
 from html import escape
-from typing import Optional
 
 log = logging.getLogger(f"mkdocs.plugins.{__name__}")
 
@@ -16,7 +15,7 @@ class ViewOptions:
     view_id: str
     browser: str = "true"
     dynamic_variant: str = "diagram"
-    project: Optional[str] = None
+    project: str | None = None
     color_scheme: str = "auto"
 
 
