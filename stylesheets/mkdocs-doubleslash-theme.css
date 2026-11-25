@@ -1,0 +1,795 @@
+/* Design system tokens — source: frontend/DESIGN.md (living-styleguide, ref=main) */
+:root {
+    --ds-color-primary: #00759e;
+    --ds-color-on-primary: #ffffff;
+    --ds-color-brand-cyan: #00a5e1;
+    --ds-color-canvas: #ffffff;
+    --ds-color-surface-bright: #f9f9f9;
+    --ds-color-surface-medium: #efefef;
+    --ds-color-ink: #000000;
+    --ds-color-tertiary: #6d6d6d;
+    --ds-color-border: #c6c6c6;
+    --ds-color-disabled-shape: #c6c6c6;
+    --ds-color-shadow-elevation: #0000001a;
+    --ds-color-shadow-token: #00000029;
+    --ds-color-dark-clickable: #77ddff;
+    --ds-color-dark-ink: #d7e9f4;
+    --ds-color-dark-ink-secondary: #afc1c7;
+    --ds-color-dark-canvas: #15202b;
+    --ds-color-dark-container: #22303c;
+    --ds-color-dark-hover: #2d3740;
+    --ds-color-dark-disabled: #84999f;
+    --ds-color-dark-border: #84999f;
+    --ds-rounded-xs: 4px;
+    --ds-rounded-md: 10px;
+    --ds-rounded-pill: 32px;
+    --ds-spacing-xs: 4px;
+    --ds-spacing-sm: 6px;
+    --ds-spacing-md: 8px;
+    --ds-spacing-control-height: 43px;
+    --ds-spacing-xl: 16px;
+    --ds-spacing-xxl: 24px;
+    --ds-motion-duration: 0.3s;
+    --ds-motion-transition: var(--ds-motion-duration) ease all;
+    --ds-wide-max-width: min(1800px, 100% - 4rem);
+    /* Separate from --ds-wide-max-width (used for the actual reading column
+       fill-width): this is only for .md-main__inner/.md-grid's own margin,
+       where 8rem (4rem per side) leaves enough room for the sidebar-collapse
+       toggle buttons (43px + 20px gap ≈ 63px each) to sit outside it without
+       drifting off-screen at narrower viewports. */
+    --ds-grid-max-width: min(1800px, 100% - 8rem);
+
+    /* Typography tokens — source: frontend/DESIGN.md (living-styleguide, ref=main) */
+    --ds-typography-body-website-font-size: 18px;
+    --ds-typography-body-website-line-height: 27px;
+    --ds-typography-body-md-font-size: 15px;
+    --ds-typography-body-md-line-height: 24px;
+    --ds-typography-body-strong-font-size: 15px;
+    --ds-typography-body-strong-line-height: 24px;
+    --ds-typography-footer-md-font-size: 15px;
+    --ds-typography-footer-md-line-height: 19px;
+    --ds-typography-caption-subfooter-font-size: 13px;
+    --ds-typography-caption-subfooter-line-height: 16px;
+    --ds-typography-heading-h1-website-font-size: 45px;
+    --ds-typography-heading-h1-website-line-height: 58.5px;
+    --ds-typography-heading-h1-website-margin-bottom: 30px;
+    /* Docs scale, not the website scale: the latter puts H2 at 40px, which
+       competes with H1 (45px) on a page carrying many H2 per article. 28px
+       keeps a gap in both directions, to H1 above and H3 (25px) below. */
+    --ds-typography-heading-h2-website-font-size: 28px;
+    --ds-typography-heading-h2-website-line-height: 36px;
+    --ds-typography-heading-h2-website-margin-bottom: 15px;
+    --ds-typography-heading-h3-website-font-size: 25px;
+    --ds-typography-heading-h3-website-line-height: 40px;
+    --ds-typography-heading-h3-website-margin-bottom: 12px;
+    --ds-typography-heading-h4-font-size: 23px;
+    --ds-typography-heading-h4-line-height: 29.9px;
+    --ds-typography-heading-h4-margin-bottom: 12px;
+    --ds-typography-heading-h5-font-size: 20px;
+    --ds-typography-heading-h5-line-height: 26px;
+    --ds-typography-heading-h5-margin-bottom: 12px;
+    --ds-typography-heading-h6-font-size: 18px;
+    --ds-typography-heading-h6-line-height: 24px;
+    --ds-typography-heading-h6-margin-bottom: 12px;
+}
+
+/* Material scales the root font-size in three hard jumps (125% / 137.5% /
+   150% at 100em / 125em) — every rem-based size and spacing on the page
+   snaps at those breakpoints. clamp() scales it continuously instead: 20px
+   up to ~1600px, 24px from ~2560px, linear in between. */
+html {
+    font-size: clamp(20px, 16px + 0.3125vw, 24px);
+}
+
+[data-md-color-scheme="default"] {
+    --md-primary-fg-color: var(--ds-color-on-primary);
+    --md-primary-bg-color: var(--ds-color-primary);
+    --md-primary-bg-color--light: var(--ds-color-primary);
+    --md-default-fg-color--light: var(--ds-color-ink);
+
+    --md-accent-fg-color: var(--ds-color-primary);
+    --md-accent-fg-color--transparent: color-mix(in srgb, var(--ds-color-brand-cyan) 12.5%, transparent);
+    --md-accent-bg-color: var(--ds-color-canvas);
+
+    --md-typeset-a-color: var(--ds-color-primary);
+    --md-custom-accent-color: var(--ds-color-primary);
+    --md-custom-text-color: var(--ds-color-on-primary);
+
+    --language-toggle-active-color: var(--ds-color-on-primary);
+    --language-toggle-active-text-color: var(--ds-color-primary);
+    --language-toggle-inactive-text-color: var(--ds-color-on-primary);
+
+    --md-typeset-color: var(--ds-color-ink);
+    --md-footer-bg-color: var(--ds-color-canvas);
+    --md-footer-bg-color--dark: var(--ds-color-tertiary);
+    --md-footer-fg-color: var(--ds-color-tertiary);
+}
+
+[data-md-color-scheme="slate"] {
+    --md-hue: 210;
+
+    --md-default-fg-color: var(--ds-color-dark-ink);
+    --md-default-bg-color: var(--ds-color-dark-canvas);
+    --md-default-fg-color--light: var(--ds-color-dark-ink);
+
+    --md-primary-fg-color: var(--ds-color-dark-container);
+    --md-primary-bg-color: var(--ds-color-dark-clickable);
+    --md-primary-bg-color--light: var(--ds-color-dark-clickable);
+
+    --md-accent-fg-color: var(--ds-color-dark-clickable);
+    --md-accent-fg-color--transparent: color-mix(in srgb, var(--ds-color-brand-cyan) 12.5%, transparent);
+    --md-accent-bg-color: var(--ds-color-canvas);
+
+    /* Scheme-aware alias: every `var(--ds-color-border)` rule picks up the
+       dark value here, so no rule needs its own slate override. */
+    --ds-color-border: var(--ds-color-dark-border);
+
+    --md-typeset-a-color: var(--ds-color-dark-clickable);
+    --md-custom-accent-color: var(--ds-color-dark-canvas);
+    --md-custom-text-color: var(--ds-color-dark-ink);
+
+    --language-toggle-active-color: var(--ds-color-dark-container);
+    --language-toggle-active-text-color: var(--ds-color-dark-clickable);
+    --language-toggle-inactive-text-color: var(--ds-color-dark-clickable);
+
+    --md-typeset-color: var(--ds-color-dark-ink);
+    --md-footer-bg-color: var(--ds-color-dark-container);
+    --md-footer-bg-color--dark: var(--ds-color-dark-container);
+    --md-footer-fg-color: var(--ds-color-dark-ink-secondary);
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter SemiBold";
+    src: url("../fonts/Inter-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
+
+:root {
+    --md-text-font: Inter, Arial, Helvetica, sans-serif;
+
+    .md-header--shadow {
+        box-shadow: 0 0 10px var(--ds-color-shadow-elevation);
+    }
+
+    .md-header {
+        padding-top: var(--ds-spacing-xs);
+        padding-bottom: var(--ds-spacing-xs);
+    }
+
+    .md-search__form {
+        background-color: var(--md-primary-fg-color);
+        border: 1px solid var(--md-primary-bg-color);
+        border-radius: var(--ds-rounded-md);
+        min-height: var(--ds-spacing-control-height);
+    }
+
+    [data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+        border-radius: var(--ds-rounded-md) var(--ds-rounded-md) 0 0;
+    }
+
+    .md-search__output {
+        border: 1px solid var(--md-primary-bg-color);
+        border-radius: 0 0 var(--ds-rounded-md) var(--ds-rounded-md);
+    }
+
+    /* Material hardcodes this background to --md-primary-fg-color--dark, a
+       variable this theme never sets, so it fell back to Material's default
+       indigo. Fixed color in both schemes to match the dark badge look. */
+    .md-nav__source {
+        background-color: var(--ds-color-dark-hover);
+        color: var(--ds-color-dark-clickable);
+    }
+
+    .md-tabs__item {
+        color: var(--md-typeset-color);
+        opacity: 1;
+        font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
+        font-size: var(--ds-typography-body-strong-font-size);
+        font-weight: 600;
+        line-height: var(--ds-typography-body-strong-line-height);
+    }
+
+    .md-tabs__item a:hover {
+        color: var(--md-typeset-a-color);
+    }
+
+    .md-tabs__item--active {
+        color: var(--md-typeset-a-color);
+        opacity: 1;
+        font-weight: 600;
+    }
+
+    .md-top:hover {
+        color: var(--md-default-bg-color);
+    }
+
+    .md-header__title {
+        margin-left: var(--ds-spacing-md);
+        margin-right: var(--ds-spacing-sm);
+    }
+
+    .md-logo svg {
+        color: var(--md-default-fg-color--light);
+        height: 1.6rem;
+        width: auto;
+    }
+
+    .md-header__button.md-logo {
+        margin: var(--ds-spacing-xs);
+        padding: var(--ds-spacing-xs);
+    }
+
+    .md-status {
+        display: none;
+    }
+
+    .md-sidebar[hidden] ~ .md-content {
+        border-left: none;
+    }
+
+    /* Stretch main area on short pages so the content divider reaches the footer */
+    .md-main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .md-main__inner {
+        flex: 1;
+        width: 100%;
+        align-items: stretch;
+    }
+
+    /* The sidebar this divider separates from is off-canvas (drawer) below
+       76.25em, so the border has nothing to divide until that breakpoint. */
+    @media screen and (min-width: 76.25em) {
+        .md-content {
+            border-left: solid;
+            border-width: 1px;
+            border-color: var(--ds-color-border);
+            transition: border-color var(--ds-motion-duration) ease;
+        }
+    }
+
+    /* Fixed reading measure: as the sidebars collapse/expand, .md-content__inner
+       is a flex item that keeps resizing, so the prose keeps re-wrapping for the
+       whole animation. Capping it stops the reflow and is a readability win on
+       wide screens either way — .md-grid stays wide for tables/diagrams. Left
+       at Material's own small gutter by default, so text still hugs the
+       sidebar divider instead of floating centered in the available space. */
+    .md-content__inner {
+        max-width: 90ch;
+        /* Capped at the column's own available width too: .md-content__inner
+           isn't itself a flex item — it's a plain block inside the
+           .md-content column that the sidebars already shrank — so an
+           unqualified 70ch floor ignores that shrunk width and overflows
+           into the ToC/nav sidebar whenever both are open on a narrower
+           viewport. min() keeps the floor from exceeding it; the 2.4rem
+           subtracted is this element's own left+right margin (1.2rem each),
+           which sits outside the border-box that min-width sizes. */
+        min-width: min(70ch, calc(100% - 2.4rem));
+        transition: max-width var(--ds-motion-duration) ease;
+    }
+
+    /* A page that hides the navigation (hide: navigation, typically together
+       with toc) has no sidebar left to hug, so the reading measure above just
+       parks the prose in the left third and leaves the rest of the grid
+       empty: measured 990px of text in a 1744px grid, where 1.2.x filled
+       1765px. There is also no way out of it, because the content-width
+       toggle only shows itself while a sidebar can collapse. Give those pages
+       the grid back. */
+    .md-sidebar--primary[hidden] ~ .md-content .md-content__inner {
+        max-width: none;
+    }
+
+    .md-content .md-typeset h1,
+    .md-content .md-typeset h2,
+    .md-content .md-typeset h3,
+    .md-content .md-typeset h4,
+    .md-content .md-typeset h5,
+    .md-content .md-typeset h6 {
+        font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
+        font-weight: 600;
+    }
+
+    /* Website typography — source: typography.body-website, heading-h*-website */
+    body {
+        font-family: Inter, Arial, Helvetica, sans-serif;
+        font-size: var(--ds-typography-body-website-font-size);
+        line-height: var(--ds-typography-body-website-line-height);
+    }
+
+    .md-content .md-typeset h1 {
+        font-size: var(--ds-typography-heading-h1-website-font-size);
+        line-height: var(--ds-typography-heading-h1-website-line-height);
+        margin-bottom: var(--ds-typography-heading-h1-website-margin-bottom);
+    }
+
+    .md-content .md-typeset h2 {
+        font-size: var(--ds-typography-heading-h2-website-font-size);
+        line-height: var(--ds-typography-heading-h2-website-line-height);
+        margin-bottom: var(--ds-typography-heading-h2-website-margin-bottom);
+    }
+
+    .md-content .md-typeset h3 {
+        font-size: var(--ds-typography-heading-h3-website-font-size);
+        line-height: var(--ds-typography-heading-h3-website-line-height);
+        margin-bottom: var(--ds-typography-heading-h3-website-margin-bottom);
+    }
+
+    .md-content .md-typeset h4 {
+        font-size: var(--ds-typography-heading-h4-font-size);
+        line-height: var(--ds-typography-heading-h4-line-height);
+        margin-bottom: var(--ds-typography-heading-h4-margin-bottom);
+    }
+
+    .md-content .md-typeset h5 {
+        font-size: var(--ds-typography-heading-h5-font-size);
+        line-height: var(--ds-typography-heading-h5-line-height);
+        margin-bottom: var(--ds-typography-heading-h5-margin-bottom);
+    }
+
+    .md-content .md-typeset h6 {
+        font-size: var(--ds-typography-heading-h6-font-size);
+        line-height: var(--ds-typography-heading-h6-line-height);
+        margin-bottom: var(--ds-typography-heading-h6-margin-bottom);
+    }
+
+    /* link-primary — no underline at rest */
+    .md-typeset a {
+        text-decoration: none;
+        color: var(--md-typeset-a-color);
+        transition: var(--ds-motion-transition);
+    }
+
+    .md-typeset a:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+    }
+
+    [data-md-color-scheme="default"] .md-typeset ul:not([class]) > li {
+        list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236d6d6d' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/></svg>");
+    }
+
+    [data-md-color-scheme="slate"] .md-typeset ul:not([class]) > li {
+        list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23d7e9f4' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/></svg>");
+    }
+
+    /* table-default — source: docs/components-html-css/Molecules/table.md */
+    .md-typeset table:not([class]) {
+        border: none;
+        border-collapse: collapse;
+        border-radius: var(--ds-rounded-md);
+        box-shadow: none;
+        font-size: var(--ds-typography-body-md-font-size);
+        line-height: var(--ds-typography-footer-md-line-height);
+        /* Docs tables carry whole sentences, unlike the short marketing
+           cells the website variant's `nowrap` is built for. With nowrap a
+           six-column table grew to 2784px inside 1158px of space and could
+           only be read by scrolling sideways. */
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    .md-typeset table:not([class]) thead {
+        font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        color: var(--md-typeset-color);
+    }
+
+    /* Rahmen um tbody per Pseudo-Elemente (Default-Stil) */
+    .md-typeset table:not([class]) tbody {
+        position: relative;
+    }
+
+    .md-typeset table:not([class]) tbody::before,
+    .md-typeset table:not([class]) tbody::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 1px solid var(--ds-color-border);
+        border-radius: var(--ds-rounded-md);
+        pointer-events: none;
+    }
+
+    .md-typeset table:not([class]) th {
+        padding: 0 15px 7px 15px;
+        background-color: transparent;
+        text-align: left;
+    }
+
+    .md-typeset table:not([class]) td {
+        padding: 15px;
+        border: none;
+    }
+
+    .md-typeset table:not([class]) tbody tr {
+        height: 50px;
+        border-bottom: 1px solid var(--ds-color-border);
+        text-align: left;
+    }
+
+    .md-typeset table:not([class]) tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    .md-typeset table:not([class]) tbody tr:hover {
+        background-color: var(--ds-color-surface-bright);
+    }
+
+    [data-md-color-scheme="slate"] .md-typeset table:not([class]) tbody tr:hover {
+        background-color: var(--ds-color-dark-hover);
+    }
+
+    .md-typeset .tabbed-set {
+        border: 1px solid var(--ds-color-border);
+        border-radius: var(--ds-rounded-md);
+    }
+
+    .md-typeset .tabbed-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .md-path__item:not(:first-child) {
+        align-items: center;
+        font-size: var(--ds-typography-caption-subfooter-font-size);
+        line-height: var(--ds-typography-caption-subfooter-line-height);
+    }
+
+    .md-footer {
+        font-size: var(--ds-typography-footer-md-font-size);
+        line-height: var(--ds-typography-footer-md-line-height);
+    }
+
+    .md-footer-meta {
+        border-top: 1px solid var(--ds-color-disabled-shape);
+    }
+}
+
+.md-icon svg.lucide {
+    fill: none;
+    stroke: currentcolor;
+    height: 1rem;
+    width: 1rem;
+}
+
+/* The ToC toggle is offered starting at 60em (below), narrower than the
+   76.25em block below — without room here too, it has nowhere to sit but
+   on top of the ToC sidebar, which is flush against the viewport edge at
+   these widths. */
+@media screen and (min-width: 60em) {
+    .md-grid {
+        max-width: var(--ds-grid-max-width);
+    }
+}
+
+/* Only constrain width on wide desktop layouts (>= 76.25em) — unguarded,
+   the "100% - 4rem" term shrinks these below their natural width on ANY
+   viewport, adding unwanted side margins on mobile too. Content only picks
+   up the same width as .md-grid once a sidebar is actually collapsed, so it
+   stays aligned with the header instead of fighting the 90ch reading cap. */
+@media screen and (min-width: 76.25em) {
+    /* Once a sidebar is actually collapsed, drop the 90ch reading cap so text
+       fills the reclaimed space instead of leaving it padded out on one
+       side — that's the whole point of the widen toggle. Material's own
+       small per-sidebar gutter (margin-left/right: 1.2rem) still applies.
+       Reuses the same cap as .md-grid (a concrete value, not `none`) so the
+       max-width transition can interpolate smoothly instead of jumping. */
+    html[data-ds-content-wide] .md-content__inner,
+    html[data-ds-toc-collapsed] .md-content__inner {
+        max-width: var(--ds-wide-max-width);
+    }
+
+    /* The ToC sidebar already bounds the layout on the right, so text can
+       fill toward it without feeling unbounded — only cap the reading
+       measure when there's no ToC there to fill toward. */
+    [dir="ltr"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-content__inner {
+        max-width: var(--ds-wide-max-width);
+    }
+}
+
+/* The wrapper (button + tooltip) has no layout below 60em, where the toggle
+   isn't offered — without this, the tooltip text renders as unstyled,
+   always-visible text in the mobile page flow. */
+.ds-toc-toggle-wrapper {
+    display: none;
+}
+
+/* ToC collapse toggle: available wherever Material renders the secondary
+   sidebar (>= 60em), not just on the wide desktop layout (>= 76.25em). */
+@media screen and (min-width: 60em) {
+    .ds-toc-toggle-wrapper {
+        display: block;
+    }
+
+    .md-sidebar--secondary {
+        transition:
+            width var(--ds-motion-duration) ease,
+            min-width var(--ds-motion-duration) ease,
+            opacity var(--ds-motion-duration) ease,
+            visibility 0s linear 0s;
+    }
+
+    .md-main__inner {
+        transition: margin var(--ds-motion-duration) ease;
+    }
+
+    html[data-ds-toc-collapsed] .md-sidebar--secondary {
+        width: 0;
+        min-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        visibility: hidden;
+        transition:
+            width var(--ds-motion-duration) ease,
+            min-width var(--ds-motion-duration) ease,
+            opacity var(--ds-motion-duration) ease,
+            visibility 0s linear var(--ds-motion-duration);
+    }
+
+    .ds-toc-toggle-wrapper {
+        position: fixed;
+        top: 6rem;
+        right: var(--ds-spacing-xl);
+        z-index: 6;
+    }
+
+    .ds-toc-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--ds-spacing-control-height);
+        height: var(--ds-spacing-control-height);
+        padding: 0;
+        margin: 5px 0 0 0;
+        border: 2px solid var(--ds-color-border);
+        border-radius: 50px;
+        background-color: var(--md-default-bg-color);
+        color: var(--md-default-fg-color);
+        cursor: pointer;
+        transition: var(--ds-motion-transition);
+    }
+
+    /* var(--md-accent-fg-color): already scheme-aware (aliases to the light
+       or dark accent per [data-md-color-scheme]), unlike a separate slate
+       override here — Material puts that attribute on <body>, not <html>,
+       so a selector combining it with html[data-ds-toc-collapsed] never matches. */
+    html[data-ds-toc-collapsed] .ds-toc-toggle {
+        border: 2px solid var(--md-accent-fg-color);
+    }
+
+    .ds-toc-toggle:hover {
+        color: var(--ds-color-on-primary);
+        background-color: var(--ds-color-primary);
+    }
+
+    .ds-toc-toggle:focus-visible {
+        outline: none;
+        box-shadow:
+            0 0 0 2px var(--ds-color-on-primary),
+            0 0 0 4px var(--ds-color-primary);
+    }
+
+    [data-md-color-scheme="slate"] .ds-toc-toggle:focus-visible {
+        box-shadow:
+            0 0 0 2px var(--ds-color-dark-canvas),
+            0 0 0 4px var(--ds-color-dark-clickable);
+    }
+
+    .ds-toc-toggle[hidden],
+    .ds-toc-toggle-wrapper:has(.ds-toc-toggle[hidden]) {
+        display: none;
+    }
+
+    .ds-toc-toggle__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ds-toc-toggle__icon[hidden] {
+        display: none;
+    }
+
+    /* tooltip-light */
+    .ds-toc-toggle__tooltip {
+        position: absolute;
+        top: calc(100% + var(--ds-spacing-xl));
+        right: 0;
+        width: min(14rem, calc(100vw - 2 * var(--ds-spacing-xl)));
+        padding: var(--ds-spacing-xl) var(--ds-spacing-xxl);
+        border-radius: var(--ds-rounded-md);
+        background-color: var(--ds-color-surface-medium);
+        color: var(--ds-color-ink);
+        font-size: var(--ds-typography-body-md-font-size);
+        line-height: var(--ds-typography-body-md-line-height);
+        text-align: left;
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        box-sizing: border-box;
+        box-shadow: 0 0 10px var(--ds-color-shadow-elevation);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .ds-toc-toggle__tooltip::before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        right: calc(var(--ds-spacing-control-height) / 2);
+        transform: translateX(50%);
+        border: 8px solid transparent;
+        border-bottom-color: var(--ds-color-surface-medium);
+        filter: drop-shadow(0 -2px 1px var(--ds-color-shadow-elevation));
+    }
+
+    [data-md-color-scheme="slate"] .ds-toc-toggle__tooltip {
+        background-color: var(--ds-color-disabled-shape);
+        color: var(--ds-color-ink);
+    }
+
+    [data-md-color-scheme="slate"] .ds-toc-toggle__tooltip::before {
+        border-bottom-color: var(--ds-color-disabled-shape);
+    }
+
+    .ds-toc-toggle__tooltip--visible {
+        opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .md-sidebar--secondary,
+        .md-main__inner,
+        .ds-toc-toggle {
+            transition: none !important;
+        }
+    }
+}
+
+@media screen and (min-width: 76.25em) {
+    .md-sidebar--primary,
+    .md-sidebar--secondary {
+        transition:
+            width var(--ds-motion-duration) ease,
+            min-width var(--ds-motion-duration) ease,
+            opacity var(--ds-motion-duration) ease,
+            visibility 0s linear 0s;
+    }
+
+    /* Fixed width so the nav text doesn't reflow as the sidebar's own width
+       animates to/from 0 — the outer sidebar just clips it via overflow,
+       instead of the text re-wrapping line by line during the transition.
+       .md-sidebar__scrollwrap has its own 0.2rem margin on each side, so
+       matching the sidebar's own 12.1rem here overflowed it horizontally. */
+    .md-sidebar__inner {
+        width: calc(12.1rem - 0.4rem);
+    }
+
+    /* Material only sets overflow-y on the scrollwrap, which per spec forces
+       overflow-x to auto too — while the sidebar's width is mid-transition,
+       the fixed-width inner above briefly overflows it, flashing a
+       horizontal scrollbar. We never want horizontal scroll here anyway. */
+    .md-sidebar__scrollwrap {
+        overflow-x: hidden;
+    }
+
+    .md-main__inner {
+        transition: margin var(--ds-motion-duration) ease;
+    }
+
+    html[data-ds-content-wide] .md-sidebar--primary {
+        width: 0;
+        min-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        visibility: hidden;
+        transition:
+            width var(--ds-motion-duration) ease,
+            min-width var(--ds-motion-duration) ease,
+            opacity var(--ds-motion-duration) ease,
+            visibility 0s linear var(--ds-motion-duration);
+    }
+
+    html[data-ds-content-wide] .md-content {
+        border-left-color: transparent;
+    }
+
+    .ds-content-width-toggle {
+        --ds-toggle-size: var(--ds-spacing-control-height);
+        position: fixed;
+        top: 50%;
+        margin-top: calc(var(--ds-toggle-size) / -2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--ds-toggle-size);
+        height: var(--ds-toggle-size);
+        padding: 0;
+        border: 2px solid var(--ds-color-border);
+        border-radius: 50px;
+        background-color: var(--md-default-bg-color);
+        color: var(--md-default-fg-color);
+        cursor: pointer;
+        /* Not `--ds-motion-transition` (transitions `all`): JS repositions this
+           button via `left` on every ResizeObserver tick to track the sidebar
+           collapse. Transitioning `left` too would restart a 300ms interpolation
+           on each tick — invisible in Chrome (fires ~every frame) but visible as
+           lag behind the sidebar in Firefox/Safari (fewer, batched ticks). */
+        transition:
+            color var(--ds-motion-duration) ease,
+            background-color var(--ds-motion-duration) ease,
+            border-color var(--ds-motion-duration) ease;
+    }
+
+    .ds-content-width-toggle:hover {
+        color: var(--ds-color-on-primary);
+        background-color: var(--ds-color-primary);
+    }
+
+    .ds-content-width-toggle:focus-visible {
+        outline: none;
+        box-shadow:
+            0 0 0 2px var(--ds-color-on-primary),
+            0 0 0 4px var(--ds-color-primary);
+    }
+
+    [data-md-color-scheme="slate"] .ds-content-width-toggle:focus-visible {
+        box-shadow:
+            0 0 0 2px var(--ds-color-dark-canvas),
+            0 0 0 4px var(--ds-color-dark-clickable);
+    }
+
+    .ds-content-width-toggle[hidden] {
+        display: none;
+    }
+
+    .ds-content-width-toggle__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ds-content-width-toggle__icon[hidden] {
+        display: none;
+    }
+
+    /* var(--md-accent-fg-color): already scheme-aware (aliases to the light
+       or dark accent per [data-md-color-scheme]), unlike a separate slate
+       override here — Material puts that attribute on <body>, not <html>,
+       so a selector combining it with html[data-ds-content-wide] never matches. */
+    html[data-ds-content-wide] .ds-content-width-toggle {
+        margin-left: 0;
+        border: 2px solid var(--md-accent-fg-color);
+        border-radius: 50px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .md-sidebar--primary,
+        .md-sidebar--secondary,
+        .md-main__inner,
+        .md-content,
+        .ds-content-width-toggle,
+        .ds-toc-toggle {
+            transition: none !important;
+        }
+    }
+}
+
+/* Remove Material's box-shadow on the sticky ToC title, but keep an opaque
+   background — otherwise scrolled-past headings show through behind it. */
+.md-nav--secondary .md-nav__title {
+    background-color: var(--md-default-bg-color);
+    box-shadow: none;
+}
