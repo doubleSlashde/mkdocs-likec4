@@ -57,6 +57,7 @@ class TestGenerate:
         assert call_args[3] == "webcomponent"
         assert "/docs" in call_args
         assert "--webcomponent-prefix" not in call_args
+        assert "-p" not in call_args
         # Verify check=True is passed for proper error handling
         assert call_kwargs.get("check") is True
 
@@ -78,6 +79,10 @@ class TestGenerate:
         assert "--webcomponent-prefix" in call_args
         prefix_idx = call_args.index("--webcomponent-prefix")
         assert call_args[prefix_idx + 1] == "myproject"
+        # docs_dir is the workspace root, the project is selected with -p
+        assert call_args[call_args.index("-p") + 1] == "myproject"
+        assert "/docs" in call_args
+        assert not any("subdir" in str(arg) for arg in call_args)
 
     @patch("mkdocs_likec4.generator.subprocess.run")
     def test_generate_creates_assets_dir(self, mock_run, tmp_path):

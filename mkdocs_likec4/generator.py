@@ -30,7 +30,12 @@ class WebComponentGenerator:
         *,
         use_dot: bool = False,
     ) -> None:
-        """Generate web component JS file for a LikeC4 project."""
+        """Generate web component JS file for a LikeC4 project.
+
+        ``project_dir`` is unused and only kept for backwards compatibility:
+        ``build_dir`` is always the workspace root and the project is selected
+        with ``-p``.
+        """
         if project_name is not None and not LikeC4Parser.is_valid_identifier(
             project_name
         ):
@@ -44,11 +49,9 @@ class WebComponentGenerator:
         site_dir.joinpath(cls.ASSETS_DIR).mkdir(parents=True, exist_ok=True)
         dest_file = site_dir.joinpath(cls.get_script_path(project_name))
 
-        project_path = (
-            build_dir
-            if project_name is None
-            else str(Path(build_dir) / (project_dir or project_name))
-        )
+        # Always use docs_dir as workspace root so that include.paths pointing
+        # outside the project folder are resolved; select the project with -p.
+        project_path = build_dir
         log.info(
             "mkdocs-likec4: Generating web component for %s from %s",
             f"project '{project_name}'" if project_name else "default project",
@@ -65,7 +68,9 @@ class WebComponentGenerator:
         if not use_dot:
             cmd.append("--no-use-dot")
         if project_name is not None:
-            cmd.extend(["--webcomponent-prefix", project_name.lower()])
+            cmd.extend(
+                ["--webcomponent-prefix", project_name.lower(), "-p", project_name]
+            )
         cmd.extend([project_path, "-o", str(dest_file)])
 
         try:
